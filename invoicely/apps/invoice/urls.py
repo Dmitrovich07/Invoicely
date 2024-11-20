@@ -7,6 +7,6 @@ router.register("invoices", InvoiceViewSet, basename="invoices")
 
 urlpatterns = [
   path('', include(router.urls)),
-  path('invoices/<int:invoice_id>/generate_pdf/', generate_pdf, name='generate_pdf'),
+  # path('invoices/<int:invoice_id>/generate_pdf/', generate_pdf, name='generate_pdf'),
   path('invoices/<int:invoice_id>/send_reminder/', send_reminder, name='send_reminder'),
 ]
