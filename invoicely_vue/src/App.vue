@@ -61,6 +61,9 @@ export default {
       isOpen: false,
     }
   },
+  mounted() {
+    document.title = "Invoicely";
+  },
   methods: {
     toggleBurger() {
       this.isOpen = !this.isOpen;
