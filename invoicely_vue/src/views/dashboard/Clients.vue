@@ -45,7 +45,7 @@ export default {
   methods: {
     getClients() {
       axios
-        .get('/api/v1/clients/')
+        .get("/api/v1/clients/")
         .then(response => {
           for (let i = 0; i < response.data.length; i++) {
             this.clients.push(response.data[i])

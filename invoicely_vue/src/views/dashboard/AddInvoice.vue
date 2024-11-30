@@ -141,9 +141,9 @@ export default {
         vat_amount += this.invoice.items[i].net_amount * (vat_rate / 100)
         net_amount += this.invoice.items[i].net_amount
       }
-      this.invoice.net_amount = net_amount
-      this.invoice.vat_amount = vat_amount
-      this.invoice.gross_amount = net_amount + vat_amount
+      this.invoice.net_amount = parseFloat(net_amount.toFixed(2))
+      this.invoice.vat_amount = parseFloat(vat_amount.toFixed(2));
+      this.invoice.gross_amount = parseFloat((net_amount + vat_amount).toFixed(2));
       this.invoice.discount_amount = 0
     },
     submitForm() {

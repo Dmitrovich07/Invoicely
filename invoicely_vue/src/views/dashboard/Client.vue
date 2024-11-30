@@ -11,9 +11,7 @@
       <div class="columns">
         <div class="column">
           <h1 class="title">{{ client.name }}</h1>
-          <button class="button">
-            <router-link :to="{ name: 'EditClient', params: { id: client.id } }">Edit</router-link>
-          </button>
+          <router-link :to="{ name: 'EditClient', params: { id: client.id } }" class="button">Edit</router-link>
         </div>
         <div class="column">
           <h2 class="title">Contact details</h2>

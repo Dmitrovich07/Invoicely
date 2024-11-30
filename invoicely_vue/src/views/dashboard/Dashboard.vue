@@ -1,69 +1,56 @@
 <template>
   <div class="page-dashboard">
     <div class="container">
-      <div class="colums">
-        <div class="column">
-          <h1 class="title">Dashboard</h1>
-        </div>
-        <div class="column">
-          <h2 class="table-title">Unpaid invoices</h2>
-          <div class="table-section">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Client</th>
-                  <th>Amount</th>
-                  <th>Due date</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="invoice in invoices"
-                  v-bind:key="invoice.id"
-                >
-                  <td>{{ invoice.invoice_number }}</td>
-                  <td>{{ invoice.client_name }}</td>
-                  <td>{{ invoice.gross_amount }}</td>
-                  <td>{{ invoice.get_due_date_formatted }}</td>
-                  <td>
-                    <router-link :to="{ name: 'Invoice', params: { id: invoice.id } }" class="details-link">Details</router-link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <h1 class="title">Dashboard</h1>
+        <div class="dashboard">
+          <div class="unpaid-invoices-block">
+            <h2 class="table-title">Unpaid invoices</h2>
+            <div class="table-section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Amount</th>
+                    <th>Due date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="invoice in invoices"
+                    v-bind:key="invoice.id"
+                  >
+                    <td>{{ invoice.invoice_number }}</td>
+                    <td>{{ invoice.client_name }}</td>
+                    <td>{{ invoice.gross_amount }}</td>
+                    <td>{{ invoice.get_due_date_formatted }}</td>
+                    <td>
+                      <router-link :to="{ name: 'Invoice', params: { id: invoice.id } }" class="details-link">Details</router-link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="colums">
-        <div class="column">
-          <h2 class="client-list-title">Newest clients</h2>
-          <div class="clients-list">
-            <div
-              class="client-card"
-              v-for="client in clients"
-              v-bind:key="client.id"
-            >
-              <div class="client-img"></div>
-              <div class="client-info">
-                <h3 class="client-name">{{ client.name }}</h3>
-                <router-link :to="{ name: 'Client', params: { id: client.id } }" class="details-link">Details</router-link>
+          <div class="newest-clients-block">
+            <h2 class="list-title">Newest clients</h2>
+            <div class="clients-list">
+              <div
+                class="client-card"
+                v-for="client in clients"
+                v-bind:key="client.id"
+              >
+                <div class="client-img"></div>
+                <div class="client-info">
+                  <h3 class="client-name">{{ client.name }}</h3>
+                  <router-link :to="{ name: 'Client', params: { id: client.id } }" class="details-link">Details</router-link>
+                </div>
               </div>
             </div>
           </div>
-          <!-- <div
-            v-for="client in clients"
-            v-bind:key="client.id"
-          >
-            <div class="box">
-              <h3 class="box-title">{{ client.name }}</h3>
-              <router-link :to="{ name: 'Client', params: { id: client.id } }" class="button">Details</router-link>
-            </div>
-          </div> -->
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -126,15 +113,21 @@ export default {
 
 .page-dashboard {
   .container {
-    .colums {
-      .column {
-        .title {
-          padding: 10px 0 20px 0;
-        }
+    .title {
+      padding: 10px 0;
+    }
+    .dashboard {
+      display: flex;
+      @media(max-width: 1050px) {
+        display: block;
+      }
+      .unpaid-invoices-block {
+        width: 100%;
         .table-title {
-          padding-bottom: 10px;
+          text-align: center;
         }
         .table-section {
+          padding: 20px 0;
           .table {
             @media(max-width: 768px) {
               width: 760px;
@@ -144,14 +137,25 @@ export default {
             }
           }
         }
-        .client-list-title {
-          padding: 20px 0 10px 0;
+      }
+      .newest-clients-block {
+        width: 500px;
+        @media(max-width: 1050px) {
+          width: 100%;
+        }
+        .list-title {
+          text-align: center;
         }
         .clients-list {
-          padding: 0 0 20px 0;
+          display: flex;
+          justify-content: center;
+          @media(max-width: 1050px) {
+            justify-content: start;
+          }
         }
       }
     }
   }
 }
 </style>
+

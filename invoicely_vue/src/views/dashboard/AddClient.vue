@@ -63,8 +63,13 @@ export default {
   },
   methods: {
     submitForm() {
+      const token = localStorage.getItem('token');
       axios
-        .post("/api/v1/clients/", this.client)
+        .post("/api/v1/clients/", this.client, {
+          headers: {
+            Authorization: `Token ${token}`
+          }
+        })
         .then(response => {
           this.$router.push('/dashboard/clients')
         })

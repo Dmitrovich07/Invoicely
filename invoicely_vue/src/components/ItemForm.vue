@@ -16,7 +16,7 @@
       <div class="field">
         <label class="field-label">Vat rate</label>
         <div class="select">
-          <select class="field-input">
+          <select class="field-input" v-model="item.vat_rate">
             <option value="0">0%</option>
             <option value="14">14%</option>
             <option value="25">25%</option>
@@ -48,8 +48,9 @@ export default {
       const quantity = this.item.quantity
       const vat_rate = this.item.vat_rate
       this.item.net_amount = unit_price * quantity
+      const gross_amount = this.item.net_amount + (this.item.net_amount * (vat_rate / 100))
       this.$emit('updatePrice', this.item)
-      return this.item.net_amount + (this.item.net_amount * (vat_rate / 100))
+      return gross_amount.toFixed(2)
     }
   }
 }

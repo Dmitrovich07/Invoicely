@@ -5,6 +5,7 @@ import store from './store'
 import axios from 'axios'
 import './assets/styles/normalize.css';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = 'https://apiinvoicely.olexb.space'
+// axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 createApp(App).use(store).use(router, axios).mount('#app')
