@@ -19,7 +19,7 @@ class ClientInvoiceSerializer(serializers.ModelSerializer):
     )
 
 class ClientSerializer(serializers.ModelSerializer):
-  invoices = ClientInvoiceSerializer(many=True)
+  invoices = ClientInvoiceSerializer(many=True, read_only=True)
   class Meta:
     model = Client
     read_only_fields = (
